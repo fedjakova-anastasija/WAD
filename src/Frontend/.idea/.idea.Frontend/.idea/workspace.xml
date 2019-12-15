@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6d6eef8f-7556-4f53-a816-e22e9fa97096" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../Backend/.idea/.idea.Backend/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/.idea/.idea.Backend/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/.idea/.idea.Backend/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/.idea/.idea.Backend/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/Backend/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/Backend/appsettings.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Frontend/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Frontend/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Frontend/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Frontend/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/wwwroot/js/lib.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/wwwroot/js/lib.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/wwwroot/js/site.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/wwwroot/js/site.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -28,11 +32,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Frontend/wwwroot/js/site.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="249">
-              <caret line="299" column="51" lean-forward="true" selection-start-line="299" selection-start-column="51" selection-end-line="299" selection-end-column="51" />
+            <state relative-caret-position="120">
+              <caret line="8" column="10" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="10" />
               <folding>
                 <element signature="n#style#0;n#span#0;n#td#0;n#!!top" expanded="true" />
               </folding>
@@ -41,10 +45,33 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Frontend/wwwroot/js/slr-parser.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Frontend/wwwroot/js/lib.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Frontend/Pages/Index.cshtml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1830">
-              <caret line="122" column="20" selection-start-line="122" selection-start-column="20" selection-end-line="122" selection-end-column="20" />
+            <state relative-caret-position="144">
+              <caret line="467" column="26" lean-forward="true" selection-start-line="467" selection-start-column="26" selection-end-line="467" selection-end-column="26" />
               <folding>
                 <marker date="1568574572772" expanded="true" signature="24:65" ph="@..." />
               </folding>
@@ -52,15 +79,50 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Frontend/Pages/Shared/_Layout.cshtml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="435">
+              <caret line="29" column="17" lean-forward="true" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Frontend/Program.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="15" column="9" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
+              <folding>
+                <marker date="1568574567231" expanded="false" signature="6:255" ph="..." />
+                <marker date="1568574567231" expanded="true" signature="275:653" ph="{...}" />
+                <marker date="1568574567231" expanded="true" signature="302:651" ph="{...}" />
+                <marker date="1568574567231" expanded="true" signature="355:429" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Frontend/Pages/_ViewStart.cshtml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <marker date="1559073549222" expanded="true" signature="0:28" ph="@..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Frontend/Pages/_ViewImports.cshtml">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
     </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>syntacticalAnalyzer</find>
-      <find>grammarEnteredButton</find>
-      <find>showProcess</find>
-      <find>ID_SHOW_PROCESS_BUTTON</find>
-      <find>grammarSlr</find>
       <find>formatLRClosureTable</find>
       <find>leftRecursionDeletion</find>
       <find>forEach</find>
@@ -86,6 +148,11 @@
       <find>no</find>
       <find>CreateEnteredGrammarTable</find>
       <find>process</find>
+      <find>5001</find>
+      <find>s</find>
+      <find>site.css</find>
+      <find>site.js</find>
+      <find>statis</find>
     </findStrings>
     <replaceStrings>
       <replace>items</replace>
@@ -95,18 +162,18 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Frontend/Startup.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Frontend/Pages/Shared/_Layout.cshtml" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Frontend/Pages/Shared/_CookieConsentPartial.cshtml" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Frontend/Pages/Shared/_ValidationScriptsPartial.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Frontend/Pages/_ViewStart.cshtml" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Frontend/Pages/Privacy.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Frontend/Pages/Index.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Frontend/Pages/Error.cshtml.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Frontend/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Frontend/Pages/Index.cshtml.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Frontend/Pages/Error.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Frontend/Pages/_ViewImports.cshtml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Frontend/Pages/_ViewImports.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Frontend/Program.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Frontend/Pages/Shared/_Layout.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Frontend/Startup.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Frontend/Pages/Shared/_CookieConsentPartial.cshtml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Frontend/Pages/Shared/_ValidationScriptsPartial.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Frontend/Pages/_ViewStart.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Frontend/Pages/Privacy.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Frontend/Pages/Index.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -114,18 +181,18 @@
         <option value="$PROJECT_DIR$/Frontend/Startup.cs" />
         <option value="$PROJECT_DIR$/Frontend/wwwroot/css/site.css" />
         <option value="$PROJECT_DIR$/Frontend/Program.cs" />
-        <option value="$PROJECT_DIR$/Frontend/wwwroot/js/lib.js" />
         <option value="$PROJECT_DIR$/Frontend/Pages/Shared/_Layout.cshtml" />
         <option value="$PROJECT_DIR$/Frontend/wwwroot/js/slr-parser.js" />
-        <option value="$PROJECT_DIR$/Frontend/Pages/Index.cshtml" />
         <option value="$PROJECT_DIR$/Frontend/wwwroot/js/site.js" />
+        <option value="$PROJECT_DIR$/Frontend/Pages/Index.cshtml" />
+        <option value="$PROJECT_DIR$/Frontend/wwwroot/js/lib.js" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-12" />
-    <option name="width" value="981" />
-    <option name="height" value="1032" />
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="-9" />
+    <option name="width" value="975" />
+    <option name="height" value="1047" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -133,11 +200,58 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AssemblyExplorer" />
+      <pane id="FileSystemExplorer" />
       <pane id="SolutionExplorer">
+        <subPane>
+          <expand>
+            <path>
+              <item name="" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="Frontend" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+            <path>
+              <item name="" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="Frontend" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Frontend" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+            <path>
+              <item name="" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="Frontend" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Frontend" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Pages" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+            <path>
+              <item name="" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="Frontend" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Frontend" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="wwwroot" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+            <path>
+              <item name="" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="Frontend" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Frontend" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="wwwroot" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="css" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+            <path>
+              <item name="" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="Frontend" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Frontend" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="wwwroot" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="js" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+            <path>
+              <item name="" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="Frontend" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Frontend" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="wwwroot" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="lib" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
         <option name="show-all-files" value="false" />
       </pane>
-      <pane id="FileSystemExplorer" />
+      <pane id="AssemblyExplorer" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -209,6 +323,9 @@
       <workItem from="1568575717408" duration="48000" />
       <workItem from="1568617593729" duration="667000" />
       <workItem from="1568621481232" duration="281000" />
+      <workItem from="1571045362152" duration="1128000" />
+      <workItem from="1571049121263" duration="627000" />
+      <workItem from="1576425817590" duration="4173000" />
     </task>
     <task id="LOCAL-00001" summary="some changes">
       <created>1568453692128</created>
@@ -221,7 +338,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="67280000" />
+    <option name="totallyTimeSpent" value="73208000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -233,17 +350,16 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
-    <editor active="true" />
+    <frame x="-7" y="-7" width="1295" height="695" extended-state="7" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18461539" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19433199" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Capture Tool" order="3" />
       <window_info id="Favorites" order="4" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.051903114" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.051903114" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39965397" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -328,25 +444,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Frontend/Pages/_ViewImports.cshtml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Frontend/Pages/_ViewStart.cshtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <marker date="1559578966176" expanded="true" signature="0:28" ph="@..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Frontend/Pages/Privacy.cshtml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="8" selection-start-line="8" selection-end-line="8" />
-          <folding>
-            <marker date="1559578966176" expanded="true" signature="26:72" ph="@..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -354,68 +455,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="27" column="9" selection-start-line="27" selection-start-column="9" selection-end-line="27" selection-end-column="9" />
-          <folding>
-            <marker date="1559578966176" expanded="false" signature="6:422" ph="..." />
-            <marker date="1559578966176" expanded="true" signature="442:2004" ph="{...}" />
-            <marker date="1559578966176" expanded="true" signature="469:2002" ph="{...}" />
-            <marker date="1559578966176" expanded="true" signature="528:591" ph="{...}" />
-            <marker date="1559578966176" expanded="true" signature="814:1267" ph="{...}" />
-            <marker date="1559578966176" expanded="true" signature="887:1164" ph="{...}" />
-            <marker date="1559578966176" expanded="true" signature="1455:1996" ph="{...}" />
-            <marker date="1559578966176" expanded="true" signature="1502:1579" ph="{...}" />
-            <marker date="1559578966176" expanded="true" signature="1596:1850" ph="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Frontend/Program.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="15" column="9" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
-          <folding>
-            <marker date="1559583251747" expanded="false" signature="6:255" ph="..." />
-            <marker date="1559583251747" expanded="true" signature="275:653" ph="{...}" />
-            <marker date="1559583251747" expanded="true" signature="302:651" ph="{...}" />
-            <marker date="1559583251747" expanded="true" signature="355:429" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Frontend/Pages/Shared/_Layout.cshtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1215">
-          <caret line="81" column="75" selection-start-line="81" selection-start-column="75" selection-end-line="81" selection-end-column="75" />
-          <folding>
-            <marker date="1560787231894" expanded="true" signature="16:3787" ph="&lt;html.../&gt;" />
-            <marker date="1560787231894" expanded="true" signature="23:1025" ph="&lt;head.../&gt;" />
-            <marker date="1560787231894" expanded="true" signature="188:321" ph="&lt;environment.../&gt;" />
-            <marker date="1560787231894" expanded="true" signature="326:474" ph="&lt;environment.../&gt;" />
-            <marker date="1560787231894" expanded="true" signature="479:951" ph="&lt;environment.../&gt;" />
-            <marker date="1560787231894" expanded="true" signature="1026:3779" ph="&lt;body.../&gt;" />
-            <marker date="1560787231894" expanded="true" signature="1033:2319" ph="&lt;header.../&gt;" />
-            <marker date="1560787231894" expanded="true" signature="1046:2309" ph="&lt;nav.../&gt;" />
-            <marker date="1560787231894" expanded="true" signature="1170:1414" ph="&lt;button.../&gt;" />
-            <marker date="1560787231894" expanded="true" signature="1423:2298" ph="&lt;div.../&gt;" />
-            <marker date="1560787231894" expanded="true" signature="1489:2283" ph="&lt;ul.../&gt;" />
-            <marker date="1560787231894" expanded="true" signature="1529:1721" ph="&lt;li.../&gt;" />
-            <marker date="1560787231894" expanded="true" signature="1738:1863" ph="&lt;li.../&gt;" />
-            <marker date="1560787231894" expanded="true" signature="1880:1999" ph="&lt;li.../&gt;" />
-            <marker date="1560787231894" expanded="true" signature="2016:2134" ph="&lt;li.../&gt;" />
-            <marker date="1560787231894" expanded="true" signature="2151:2265" ph="&lt;li.../&gt;" />
-            <marker date="1560787231894" expanded="true" signature="2320:2420" ph="&lt;div.../&gt;" />
-            <marker date="1560787231894" expanded="true" signature="2348:2413" ph="&lt;main.../&gt;" />
-            <marker date="1560787231894" expanded="true" signature="2422:2562" ph="&lt;footer.../&gt;" />
-            <marker date="1560787231894" expanded="true" signature="2481:2552" ph="&lt;div.../&gt;" />
-            <marker date="1560787231894" expanded="true" signature="2564:2742" ph="&lt;environment.../&gt;" />
-            <marker date="1560787231894" expanded="true" signature="2743:3491" ph="&lt;environment.../&gt;" />
-            <marker date="1560787231894" expanded="true" signature="2783:3096" ph="&lt;script.../&gt;" />
-            <marker date="1560787231894" expanded="true" signature="3101:3476" ph="&lt;script.../&gt;" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Frontend/wwwroot/js/lib.js" />
-    <entry file="file://$PROJECT_DIR$/Frontend/wwwroot/js/slr-parser.js" />
     <entry file="file://$PROJECT_DIR$/Frontend/wwwroot/lib/jquery/dist/jquery.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -423,23 +465,74 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Frontend/wwwroot/js/slr-parser.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Frontend/wwwroot/js/site.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="249">
-          <caret line="299" column="51" lean-forward="true" selection-start-line="299" selection-start-column="51" selection-end-line="299" selection-end-column="51" />
+        <state relative-caret-position="120">
+          <caret line="8" column="10" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="10" />
           <folding>
             <element signature="n#style#0;n#span#0;n#td#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Frontend/Program.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="15" column="9" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
+          <folding>
+            <marker date="1568574567231" expanded="false" signature="6:255" ph="..." />
+            <marker date="1568574567231" expanded="true" signature="275:653" ph="{...}" />
+            <marker date="1568574567231" expanded="true" signature="302:651" ph="{...}" />
+            <marker date="1568574567231" expanded="true" signature="355:429" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Frontend/Pages/_ViewStart.cshtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <marker date="1559073549222" expanded="true" signature="0:28" ph="@..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Frontend/Pages/_ViewImports.cshtml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/Frontend/Pages/Index.cshtml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1830">
-          <caret line="122" column="20" selection-start-line="122" selection-start-column="20" selection-end-line="122" selection-end-column="20" />
+        <state relative-caret-position="144">
+          <caret line="467" column="26" lean-forward="true" selection-start-line="467" selection-start-column="26" selection-end-line="467" selection-end-column="26" />
           <folding>
             <marker date="1568574572772" expanded="true" signature="24:65" ph="@..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Frontend/wwwroot/js/lib.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Frontend/Pages/Shared/_Layout.cshtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="29" column="17" lean-forward="true" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="17" />
         </state>
       </provider>
     </entry>

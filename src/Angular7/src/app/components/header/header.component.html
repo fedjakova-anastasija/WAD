@@ -1,0 +1,7 @@
+<nav *ngIf="showHead" class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="mr-auto">
+        <a routerLink='/user/registration' routerLinkActive='active' class="navbar-brand" href="#">Registration</a>
+        <a routerLink='/user/login' routerLinkActive='active' class="navbar-brand" href="#">Sign in</a>
+    </div>
+    <button class="btn btn-danger my-2 my-sm-0" (click)="onLogout()">Logout</button>
+</nav>

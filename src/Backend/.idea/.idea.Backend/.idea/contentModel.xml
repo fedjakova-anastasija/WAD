@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\study\ndk\src\Backend" t="IncludeFlat">
+    <e p="C:\Users\fedia\.Rider2019.1\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\fedia\.Rider2019.1\system\resharper-host\local\Transient\ReSharperHost\v191\SolutionCaches\_Backend.1983327969.00" t="ExcludeRecursive" />
+    <e p="C:\Users\fedia\Desktop\study\WAD\src\Backend" t="IncludeFlat">
       <e p="Backend" t="IncludeRecursive">
         <e p="application.properties" t="Include" />
         <e p="appsettings.Development.json" t="Include" />
@@ -9,11 +11,25 @@
         <e p="Backend.csproj" t="IncludeRecursive" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="Controllers" t="Include">
+          <e p="ApplicationUserController.cs" t="Include" />
           <e p="SequenceController.cs" t="Include" />
           <e p="StatisticController.cs" t="Include" />
+          <e p="UserProfileController.cs" t="Include" />
           <e p="ValuesController.cs" t="Include" />
         </e>
         <e p="DictionaryAsArrayResolver.cs" t="Include" />
+        <e p="Migrations" t="Include">
+          <e p="20191110204410_InitialCreate.cs" t="Include" />
+          <e p="20191110204410_InitialCreate.Designer.cs" t="Include" />
+          <e p="AuthenticationContextModelSnapshot.cs" t="Include" />
+        </e>
+        <e p="Models" t="Include">
+          <e p="ApplicationSettings.cs" t="Include" />
+          <e p="ApplicationUser.cs" t="Include" />
+          <e p="ApplicationUserModel.cs" t="Include" />
+          <e p="AuthenticationContext.cs" t="Include" />
+          <e p="LoginModel.cs" t="Include" />
+        </e>
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp2.2" t="Include">
@@ -31,7 +47,5 @@
       <e p="Backend.sln" t="IncludeFlat" />
       <e p="packages" t="ExcludeRecursive" />
     </e>
-    <e p="C:\Users\Darya\.Rider2018.3\system\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\Darya\.Rider2018.3\system\resharper-host\local\Transient\ReSharperHost\v183\SolutionCaches\_Backend.1689101007.00" t="ExcludeRecursive" />
   </component>
 </project>
