@@ -1,647 +1,302 @@
 var ID_BUTTON = "#grammarEnteredButton";
+var ID_BUTTON_SLR = "#grammarEnteredButtonSlr";
 var ID_STATISTIC_BUTTON = "#statisticMenu";
+var ID_SHOW_PROCESS_BUTTON = "#showProcess";
+var ID_PROCESS_SEQUENCE_BUTTON = "#slrInputSequenceButton";
 var ID_SYNTACTICAL_ANALYZER_BUTTON = "#syntacticalAnalyzerMenu";
 var ID_SEQUENCE_CHECK_BUTTON = "#inputSequenceButton";
 var ID_TEXTAREA = 'textarea#enteredGrammar';
-var PROCESS_GRAMMAR_URL = "http://127.0.0.1:5000/api/values/";
+var PROCESS_GRAMMAR_URL = "http://127.0.0.1:5000/api/values//";
+var PROCESS_SLR_GRAMMAR_URL = "http://127.0.0.1:5000/api/slrsequence/";
 var PROCESS_SEQUENCE_URL = "http://127.0.0.1:5000/api/sequence/";
 var STATISTIC_URL = "http://127.0.0.1:5000/api/statistic/statistic";
 var INPUT_HIDDEN_ID = "#sequenceId";
 var INPUT_SEQUENCE_ID = "#inputSequence";
 var HIDDEN_CONTENT_ID = "#hiddenContent";
+var HIDDEN_SLR_CONTENT_ID = "#hiddenSlrContent";
 var HIDDEN_SEQUENCE_ID = "#hiddenSequenceContent";
+var HIDDEN_SLR_SEQUENCE_ID = "#slrHiddenSequenceContent";
 var SYNTACTICAL_ANALYZER_CONTENT_ID = "#syntacticalAnalyzer";
 var STATISTIC_CONTENT_ID = "#statisticContent";
+var SHOW_PROCESS_CONTENT_ID = "#showProcessContent";
 
 $(document).ready(function () {
     $(HIDDEN_CONTENT_ID).hide();
     $(HIDDEN_SEQUENCE_ID).hide();
+    $(HIDDEN_SLR_SEQUENCE_ID).hide();
     $(STATISTIC_CONTENT_ID).hide();
+    $(SHOW_PROCESS_CONTENT_ID).hide();
+    $(HIDDEN_SLR_CONTENT_ID).hide();
     $(ID_SYNTACTICAL_ANALYZER_BUTTON).on("click", function () {
         $(STATISTIC_CONTENT_ID).hide();
         $(SYNTACTICAL_ANALYZER_CONTENT_ID).show();
     });
+    processSlrGrammar();
     processGrammar();
     processSequence();
     processStatistic();
-    var grammar = new Grammar('Z -> S\nS -> S a\nS -> b');
-    
-    
 });
-/*
- *  The MIT License
- * 
- *  Copyright 2011 Greg.
- * 
- *  Permission is hereby granted, free of charge, to any person obtaining a copy
- *  of this software and associated documentation files (the "Software"), to deal
- *  in the Software without restriction, including without limitation the rights
- *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- *  copies of the Software, and to permit persons to whom the Software is
- *  furnished to do so, subject to the following conditions:
- * 
- *  The above copyright notice and this permission notice shall be included in
- *  all copies or substantial portions of the Software.
- * 
- *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- *  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- *  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- *  THE SOFTWARE.
- */
 
-function extend(objekt, zuper) {
-    _.extend(objekt, zuper);
-
-    objekt.zuper = zuper;
+function processSlrGrammar() {    
+    $(ID_BUTTON_SLR).on("click", function () {
+        $(HIDDEN_SLR_CONTENT_ID).show();
+        $(HIDDEN_CONTENT_ID).hide();
+        var message = $(ID_TEXTAREA).val();
+        var grammar = new Grammar(message);
+        var lrClosureTable = new LRClosureTable(grammar);
+        var lrTable = new LRTable(lrClosureTable);
+        GrammarSlrVisualization(grammar);
+        ShowProcess(lrClosureTable);
+        ProcessSlrTable(lrTable);
+        ProcessSequence(lrTable);
+    });
 }
 
-function newObject(prototype) {
-    function F() {
-        // Deliberatley left empty
-    }
-
-    F.prototype = prototype;
-
-    return new F();
-}
-
-function includes(array1, array2) {
-    for (var i in array1) {
-        if (array2.indexOf(array1[i]) < 0) {
-            return false;
-        }
-    }
-
-    return true;
-}
-
-function includeEachOther(array1, array2) {
-    return includes(array1, array2) && includes(array2, array1);
-}
-
-function includesUsingEquals(array1, array2) {
-    for (var i in array1) {
-        if (indexOfUsingEquals(array1[i], array2) < 0) {
-            return false;
-        }
-    }
-
-    return true;
-}
-
-function includeEachOtherUsingEquals(array1, array2) {
-    return includesUsingEquals(array1, array2) && includesUsingEquals(array2, array1);
-}
-
-function getOrCreateArray(dictionary, key) {
-    var result = dictionary[key];
-
-    if (result == undefined) {
-        result = [];
-        dictionary[key] = result;
-    }
-
-    return result;
-}
-
-/**
- * @return
- * <br>Array
- * <br>New
- */
-function trimElements(array) {
-    var result = [];
-
-    for (var i in array) {
-        result[i] = array[i].trim();
-    }
-
-    return result;
-}
-
-function isElement(element, array) {
-    for (var i in array) {
-        if (element == array[i]) {
-            return true;
-        }
-    }
-
-    return false;
-}
-
-/**
- * @param array
- * <br>Input-output
- * @return <code>true</code> iff <code>array</code> has been modified
- */
-function addUnique(element, array) {
-    if (!isElement(element, array)) {
-        array.push(element);
-
-        return true;
-    }
-
-    return false;
-}
-
-function isElementUsingEquals(element, array) {
-    for (var i in array) {
-        if (element.equals(array[i])) {
-            return true;
-        }
-    }
-
-    return false;
-}
-
-/**
- * @param array
- * <br>Input-output
- * @return <code>true</code> iff <code>array</code> has been modified
- */
-function addUniqueUsingEquals(element, array) {
-    if (!isElementUsingEquals(element, array)) {
-        array.push(element);
-
-        return true;
-    }
-
-    return false;
-}
-
-/**
- * @return
- * <br>Range: <code>[-1 .. array.length - 1]</code>
- */
-function indexOfUsingEquals(element, array) {
-    for (var i in array) {
-        if (element.equals(array[i])) {
-            return i;
-        }
-    }
-
-    return -1;
-}
-
-function $element(id) {
-    return document.getElementById(id);
-}
-
-function assertEquality(expected, actual) {
-    if (expected != actual) {
-        throw 'Assertion failed: expected ' + expected + ' but was ' + actual;
-    }
-}
-
-function assertEquals(expected, actual) {
-    if (!expected.equals(actual)) {
-        throw 'Assertion failed: expected ' + expected + ' but was ' + actual;
-    }
-}
-
-function resize(textInput, minimumSize) {
-    textInput.size = Math.max(minimumSize, textInput.value.length);
-}
-
-/*
- *  The MIT License
- * 
- *  Copyright 2011 Greg.
- * 
- *  Permission is hereby granted, free of charge, to any person obtaining a copy
- *  of this software and associated documentation files (the "Software"), to deal
- *  in the Software without restriction, including without limitation the rights
- *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- *  copies of the Software, and to permit persons to whom the Software is
- *  furnished to do so, subject to the following conditions:
- * 
- *  The above copyright notice and this permission notice shall be included in
- *  all copies or substantial portions of the Software.
- * 
- *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- *  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- *  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- *  THE SOFTWARE.
- */
-
-var EPSILON = '\'\'';
-
-function Grammar(text) {
-    // <PUBLIC>
-
-    this.alphabet = [];
-    this.nonterminals = [];
-    this.terminals = [];
-    this.rules = [];
-    this.firsts = new Object();
-    this.follows = new Object();
-
-    this.toString = function() {
-        return this.rules.join('\n');
-    };
-
-    this.getRulesForNonterminal = function(nonterminal) {
-        var result = [];
-
-        for (var i in this.rules) {
-            var rule = this.rules[i];
-
-            if (nonterminal == rule.nonterminal) {
-                result.push(rule);
-            }
-        }
-
-        return result;
-    };
-
-    /**
-     * @param sequence
-     * <br>Array of symbols
-     * @result
-     * <br>Array of terminal symbols
-     * <br>New
-     */
-    this.getSequenceFirsts = function(sequence) {
-        var result = [];
-        var epsilonInSymbolFirsts = true;
-
-        for (var j in sequence) {
-            var symbol = sequence[j];
-            epsilonInSymbolFirsts = false;
-
-            if (isElement(symbol, this.terminals)) {
-                addUnique(symbol, result);
-
-                break;
-            }
-
-            for (var k in this.firsts[symbol]) {
-                var first = this.firsts[symbol][k];
-
-                epsilonInSymbolFirsts |= first == EPSILON;
-
-                addUnique(first, result);
-            }
-
-            epsilonInSymbolFirsts |= this.firsts[symbol] == undefined || this.firsts[symbol].length == 0;
-
-            if (!epsilonInSymbolFirsts) {
-                break;
-            }
-        }
-
-        if (epsilonInSymbolFirsts) {
-            addUnique(EPSILON, result);
-        }
-
-        return result;
-    };
-
-    // </PUBLIC>
-
-    // <INITIALIZATION>
-
-    initializeRulesAndAlphabetAndNonterminals(this);
-    initializeAlphabetAndTerminals(this);
-    initializeFirsts(this);
-    initializeFollows(this);
-
-    // </INITIALIZATION>
-
-    // <PRIVATE>
-
-    /**
-     * @param grammar
-     * <br>Input-output
-     */
-    function initializeRulesAndAlphabetAndNonterminals(grammar) {
-        var lines = text.split('\n');
-
-        for (var i in lines) {
-            var line = lines[i].trim();
-
-            if (line != '') {
-                var rule = new Rule(grammar, line);
-
-                grammar.rules.push(rule);
-
-                if (grammar.axiom == undefined) {
-                    grammar.axiom = rule.nonterminal;
+function ProcessSequence(lrTable) {
+    console.log(lrTable);
+    $(ID_PROCESS_SEQUENCE_BUTTON).on("click", function () {
+        var message = $('#slrInputSequence').val();
+        var obj = {
+            "sequence": message
+        };
+        $.ajax({
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            url: PROCESS_SLR_GRAMMAR_URL,
+            type: "POST",
+            async: false,
+            cors: true,
+            data: JSON.stringify(obj),
+            success: function (data) {
+                var newData = JSON.parse(data);
+                var res = newData.lexerResults;
+                var findError = res.search("ERROR");
+                if (findError === -1)
+                {
+                    parseInput(lrTable, newData.convertedInput);
+                    $(HIDDEN_SLR_SEQUENCE_ID).show();
                 }
+                else
+                {
+                    var resultText = "sequence declined by LEXER";
+                    var resultClass = "text-declined";
+                    $('#slrAlgorithmId').text(resultText).removeClass().addClass(resultClass);
 
-                addUnique(rule.nonterminal, grammar.alphabet);
-                addUnique(rule.nonterminal, grammar.nonterminals);
-            }
-        }
-    }
-
-    /**
-     * @param grammar
-     * <br>Input-output
-     */
-    function initializeAlphabetAndTerminals(grammar) {
-        for (var i in grammar.rules) {
-            var rule = grammar.rules[i];
-
-            for (var j in rule.development) {
-                var symbol = rule.development[j];
-
-                if (symbol != EPSILON && !isElement(symbol, grammar.nonterminals)) {
-                    addUnique(symbol, grammar.alphabet);
-                    addUnique(symbol, grammar.terminals);
                 }
-            }
-        }
-    }
-
-    /**
-     * @param grammar
-     * <br>Input-output
-     */
-    function initializeFirsts(grammar) {
-        var notDone;
-
-        do {
-            notDone = false;
-
-            for (var i in grammar.rules) {
-                var rule = grammar.rules[i];
-                var nonterminalFirsts = getOrCreateArray(grammar.firsts, rule.nonterminal);
-
-                if (rule.development.length == 1 && rule.development[0] == EPSILON) {
-                    notDone |= addUnique(EPSILON, nonterminalFirsts);
-                } else {
-                    notDone |= collectDevelopmentFirsts(grammar, rule.development, nonterminalFirsts);
-                }
-            }
-        } while (notDone);
-    }
-
-    /**
-     * @param grammar
-     * <br>Input-output
-     * @param development
-     * <br>Array of symbols
-     * @param nonterminalFirsts
-     * <br>Array of symbols
-     * <br>Input-output
-     * @return <code>true</code> If <code>nonterminalFirsts</code> has been modified
-     */
-    function collectDevelopmentFirsts(grammar, development, nonterminalFirsts) {
-        var result = false;
-        var epsilonInSymbolFirsts = true;
-
-        for (var j in development) {
-            var symbol = development[j];
-            epsilonInSymbolFirsts = false;
-
-            if (isElement(symbol, grammar.terminals)) {
-                result |= addUnique(symbol, nonterminalFirsts);
-
-                break;
-            }
-
-            for (var k in grammar.firsts[symbol]) {
-                var first = grammar.firsts[symbol][k];
-
-                epsilonInSymbolFirsts |= first == EPSILON;
-
-                result |= addUnique(first, nonterminalFirsts);
-            }
-
-            if (!epsilonInSymbolFirsts) {
-                break;
-            }
-        }
-
-        if (epsilonInSymbolFirsts) {
-            result |= addUnique(EPSILON, nonterminalFirsts);
-        }
-
-        return result;
-    }
-
-    /**
-     * @param grammar
-     * <br>Input-output
-     */
-    function initializeFollows(grammar) {
-        var notDone;
-
-        do {
-            notDone = false;
-
-            for (var i in grammar.rules) {
-                var rule = grammar.rules[i];
-
-                if (i == 0) {
-                    var nonterminalFollows = getOrCreateArray(grammar.follows, rule.nonterminal);
-
-                    notDone |= addUnique('$', nonterminalFollows);
-                }
-
-                for (var j in rule.development) {
-                    var symbol = rule.development[j];
-
-                    if (isElement(symbol, grammar.nonterminals)) {
-                        var symbolFollows = getOrCreateArray(grammar.follows, symbol);
-                        var afterSymbolFirsts = grammar.getSequenceFirsts(rule.development.slice(parseInt(j) + 1));
-
-                        for (var k in afterSymbolFirsts) {
-                            var first = afterSymbolFirsts[k];
-
-                            if (first == EPSILON) {
-                                var nonterminalFollows = grammar.follows[rule.nonterminal];
-
-                                for (var l in nonterminalFollows) {
-                                    notDone |= addUnique(nonterminalFollows[l], symbolFollows);
-                                }
-                            } else {
-                                notDone |= addUnique(first, symbolFollows);
-                            }
-                        }
-                    }
-                }
-            }
-        } while (notDone);
-    }
-
-    // </PRIVATE>
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                ErrorVisualization(jqXHR, textStatus, errorThrown, '#error');
+                CreateString(jqXHR.status + ", " + textStatus + ", " + errorThrown + '<br><p>Sorry, please try again</p>', "#errorBody");
+                $('#error').modal('show');
+            },
+            dataType: "json"
+        });
+        
+    });
 }
 
-function Rule(grammar, text) {
-    // <PUBLIC>
 
-    this.grammar = grammar;
-    this.index = grammar.rules.length;
+function parseInput(lrTable, data) {
+    var stack = [0];
 
-    var split = text.split('->');
+    function stateIndex() {
+        return stack[2 * ((stack.length - 1) >> 1)];
+    }
+    
+    var line = (data.replace(/(\r\n|\n|\r)/gm, " ")).replace(/\s\s+/g, ' ');
+    var tokens = (line.trim() + ' $').split(' ');
+    var tokenIndex = 0;
+    var token = tokens[tokenIndex];
+    var state = lrTable.states[stateIndex()];
+    var action = state[token];
+    var actionElement = chooseActionElement(state, token);
+    var stackHtml = [];
+    var sequenceHtml = [];
+    var transitionHtml = [];
+    
+    stackHtml.push(getCurrentStackValue(stack));
+    sequenceHtml.push(tokens.slice(tokenIndex).join(' '));
+    transitionHtml.push(getCurrentTransitionValue(state, token));
+    var isAccepted = false;
 
-    this.nonterminal = split[0].trim();
+    while (action != undefined && actionElement != 'r0') {
+        if (actionElement.actionType == 's') {
+            stack.push(tokens[tokenIndex++]);
+            stack.push(parseInt(actionElement.actionValue));
+        } else if (actionElement.actionType == 'r') {
+            var ruleIndex = actionElement.actionValue;
+            var rule = lrTable.grammar.rules[ruleIndex];
+            var removeCount = isElement(EPSILON, rule.development) ? 0 : rule.development.length * 2;
+            var removedElements = stack.splice(stack.length - removeCount, removeCount);
+            var node = new Tree(rule.nonterminal, []);
 
-    this.pattern = trimElements(this.nonterminal.split(' '));
-
-    this.development = trimElements(split[1].trim().split(' '));
-
-    this.toString = function() {
-        return this.nonterminal + ' -> ' + this.development.join(' ');
-    };
-
-    this.equals = function(that) {
-        if (this.nonterminal != that.nonterminal) {
-            return false;
-        }
-
-        if (parseInt(this.development.length) != parseInt(that.development.length)) {
-            return false;
-        }
-
-        for (var i in this.development) {
-            if (this.development[i] != that.development[i]) {
-                return false;
+            for (var j = 0; j < removedElements.length; j += 2) {
+                node.children.push(removedElements[j]);
             }
+
+            stack.push(node);
+        } else {
+            stack.push(parseInt(actionElement));
         }
 
-        return true;
-    };
-
-    // </PUBLIC>
-}
-
-function BasicItem(rule, dotIndex) {
-    // <PUBLIC>
-
-    this.rule = rule;
-
-    this.dotIndex = dotIndex;
-
-    this.lookAheads = [];
-
-    this.addUniqueTo = function(items) {
-        return addUniqueUsingEquals(this, items);
-    };
-
-    this.newItemsFromSymbolAfterDot = function() {
-        var result = [];
-        var nonterminalRules = this.rule.grammar.getRulesForNonterminal(this.rule.development[this.dotIndex]);
-
-        for (var j in nonterminalRules) {
-            addUniqueUsingEquals(new Item(nonterminalRules[j], 0), result);
+        var state = lrTable.states[stateIndex()];
+        var token = stack.length % 2 == 0 ? stack[stack.length - 1] : tokens[tokenIndex];
+        action = state[token];
+        actionElement = chooseActionElement(state, token);
+        stackHtml.push(getCurrentStackValue(stack));
+        sequenceHtml.push(tokens.slice(tokenIndex).join(' '));
+        var transition = getCurrentTransitionValue(state, token);
+        if (transition.indexOf("OK") !== -1) 
+        {
+            isAccepted = true;
         }
-
-        return result;
-    };
-
-    this.newItemAfterShift = function() {
-        if (this.dotIndex < this.rule.development.length && this.rule.development[this.dotIndex] != EPSILON) {
-            return new Item(this.rule, this.dotIndex + 1);
-        }
-
-        return undefined;
+        transitionHtml.push(transition);        
     }
 
-    this.equals = function(that) {
-        return this.rule.equals(that.rule) && (parseInt(this.dotIndex) == parseInt(that.dotIndex));
-    };
 
-    this.toString = function() {
-        return this.rule.nonterminal + ' -> ' + this.rule.development.slice(0, this.dotIndex).join(' ') + '.' +
-            (isElement(EPSILON, this.rule.development) ? '' : this.rule.development.slice(this.dotIndex).join(' '));
-    };
-
-    // </PUBLIC>
+    var resultText = "sequence " + (isAccepted ? "accepted" : "declined");
+    var resultClass = (isAccepted ? "text-accepted" : "text-declined");
+    $('#slrAlgorithmId').text(resultText).removeClass().addClass(resultClass);
+    
+    CreateEnteredGrammarTable(stackHtml, "#slrState", false);
+    CreateEnteredGrammarTable(sequenceHtml, "#slrSequence", true);
+    CreateEnteredGrammarTable(transitionHtml, "#slrTransition",false);
 }
 
-function BasicLR1Item(rule, dotIndex) {
-    // <PUBLIC>
+function ProcessSlrTable(lrTable) {
+    var grammar = lrTable.grammar.alphabet;
+    var row = '';
+    row += '<tr class="card-header">';
+    row += '<td></td>';
+    for (var i in grammar) {
+        // for (var j in grammar[i]) {
+        //     (j == 0) ? 
+                // row += '<td class="card-header">' + grammar[i][j] + '</td>' : row += '<td>' + grammar[i][j] + '</td>';
+        row += '<td class="card-header">' + escapeHtml(grammar[i])+ '</td>'
+        // }
+    }
+    row += '<td class="card-header">$</td>';
+    row += '</tr>';
 
-    extend(this, new BasicItem(rule, dotIndex));
-
-    var zuper = this.zuper;
-
-    this.lookAheads = rule.index == 0 ? ['$'] : [];
-
-    this.newItemsFromSymbolAfterDot = function() {
-        var result = this.zuper.newItemsFromSymbolAfterDot();
-
-        if (result.length == 0) {
-            return result;
-        }
-
-        var newLookAheads = [];
-        var epsilonPresent = false;
-        var firstsAfterSymbolAfterDot = this.rule.grammar.getSequenceFirsts(this.rule.development.slice(this.dotIndex + 1));
-
-        for (var i in firstsAfterSymbolAfterDot) {
-            var first = firstsAfterSymbolAfterDot[i];
-            if (EPSILON == first) {
-                epsilonPresent = true;
+    var grammar = lrTable.grammar.alphabet;
+    grammar.push("$");
+    lrTable.states.forEach(function (state) {
+        row += '<tr>';
+        row += '<td class="card-header">' + state.index + '</td>';
+        var i = 0;
+        grammar.forEach(function (elem) {
+            if (state[elem] !== undefined) {
+                if ((state[elem][0].actionType == "r") && (state[elem][0].actionValue == 0))
+                {
+                    row += '<td>' + "<span style=\"color: green;\">OK</span>" + '</td>';
+                }
+                else
+                {
+                    row += '<td>' + ((state[elem][0].actionType == "r") ? "r" : "") + state[elem][0].actionValue + '</td>';   
+                }
             } else {
-                addUnique(first, newLookAheads);
+                row += '<td>' + '</td>';
             }
-        }
+            ++i;
+        });
+    });
+    $("#slrTable").html(row);
+}
 
-        if (epsilonPresent) {
-            for (var i in this.lookAheads) {
-                addUnique(this.lookAheads[i], newLookAheads);
-            }
-        }
-
-        for (var i in result) {
-            result[i].lookAheads = newLookAheads.slice(0);
-        }
-
-        return result;
-    };
-
-    this.newItemAfterShift = function() {
-        var result = zuper.newItemAfterShift();
-
-        if (result != undefined) {
-            result.lookAheads = this.lookAheads.slice(0);
-        }
-
-        return result;
+function ShowProcess(lrClosureTable) {
+    document.getElementById('showProcess').onclick = function () {
+        toggleText(ID_SHOW_PROCESS_BUTTON);
+        ($(SHOW_PROCESS_CONTENT_ID).css('display') == 'none') ? $(SHOW_PROCESS_CONTENT_ID).show() : $(SHOW_PROCESS_CONTENT_ID).hide();
+        GetDataForShowProcessTable(lrClosureTable); 
     }
+}
 
-    this.addUniqueTo = function(items) {
-        var result = false;
+function GetDataForShowProcessTable(lrClosureTable) {
+    var states = [];
+    var transitions = [];
+    var curPoses = [];
+    var lastPoses = [];
+    states.push(0);
+    transitions.push([]);
+    var items = lrClosureTable.kernels[0].items;
+    var tmpStr2 = "";
+    items.forEach(function (kernel) {
+        tmpStr2 += kernel.rule.pattern + " -> " + kernel.rule.development + "    ";
+    });
+    curPoses.push(tmpStr2);
+    lrClosureTable.kernels.forEach(function (elem) {
 
-        for (var i in items) {
-            var item = items[i];
+        Object.values(elem.gotos).forEach(function (gotos) {
+            var tmpStr2 = "";
+            lrClosureTable.kernels[gotos.toString()].items.forEach(function (kernel) {
+                tmpStr2 += kernel.rule.pattern + " -> " + kernel.rule.development + "    ";
+            });
+            curPoses.push(tmpStr2);
+        });
 
-            if (zuper.equals(item)) {
-                for (var i in this.lookAheads) {
-                    result |= addUnique(this.lookAheads[i], item.lookAheads);
+        if (elem.keys.length !== 0) {
+            elem.keys.forEach(function (key) {
+                var str = elem.index + ": " + key.toString();
+                transitions.push(str);
+            });
+            Object.values(elem.gotos).forEach(function (gotos) {
+                var str = gotos.toString();
+                states.push(str);
+            });
+        }
+
+        var tmpStr = "";
+        elem.closure.forEach(function (rule) {
+            Object.values(rule).forEach(function (rule2) {
+                if (typeof rule2.pattern != "undefined") {
+                    tmpStr += rule2.pattern + " -> " + rule2.development + "    ";
                 }
+            });
+        });
+        lastPoses.push(tmpStr);
+    });
 
-                return result;
-            }
-        }
+    CreateShowProcessTable(states, transitions, curPoses, lastPoses, "#showProcessTable");
+}
 
-        items.push(this);
+function GrammarSlrVisualization(grammar) {
 
-        return true;
-    };
+    $("#startSymbolSlr").html(grammar.axiom);
+    console.log(grammar.rules);
+    CreateEnteredGrammarTable(CreateSlrList(grammar.rules), "#grammarSlr", true);
+    CreateEnteredGrammarTable(grammar.terminals, "#terminalsSlr", true);
+    CreateEnteredGrammarTable(grammar.nonterminals, "#noTerminalsSlr", true);
 
-    this.equals = function(that) {
-        return zuper.equals(that) && includeEachOther(this.lookAheads, that.lookAheads);
-    }
-
-    this.toString = function() {
-        return '[' + zuper.toString() + ', ' + this.lookAheads.join('/') + ']';
-    };
-
-    // </PUBLIC>
+    CreateSlrFirstFollowTable(grammar.firsts, grammar.follows, '#slrFirstFollow');
 }
 
 
+function CreateSlrFirstFollowTable(first, follow, id) {
+    var row = '';
+    for (var i in first) {
+        row += '<tr><td>' +
+
+            escapeHtml(i) + '</td><td>' + escapeHtml(first[i]) + '</td><td>' + escapeHtml(follow[i]) + '</td></tr>';
+    }
+
+    $(id).html(row);
+}
+
+function CreateSlrList(rules) {
+    var list = [];
+    rules.forEach(function (rule) {
+        var str = rule.pattern[0] + " -> ";
+        for (var i in rule.development)
+        {
+            str += rule.development[i] + " ";
+        }
+        list.push(str);
+    });
+
+    return list;
+}
 
 function processStatistic() {
     $(ID_STATISTIC_BUTTON).on("click", function (event) {
@@ -726,6 +381,7 @@ function SequenceVisualization(data) {
 
 function processGrammar() {
     $(ID_BUTTON).on("click", function () {
+        $(HIDDEN_SLR_CONTENT_ID).hide();
         var message = $(ID_TEXTAREA).val();
         $.ajax({
             headers: {
@@ -739,7 +395,7 @@ function processGrammar() {
             data: JSON.stringify(message),
             success: function (data) {
                 GrammarVisualization(data);
-                $(HIDDEN_CONTENT_ID).show();
+                $(HIDDEN_CONTENT_ID).show();                
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 ErrorVisualization(jqXHR, textStatus, errorThrown, '#error');
@@ -775,10 +431,10 @@ function ParseGrammar(grammar) {
     var noTerminals = grammar.noTerminals;
     var startSymbol = grammar.startSymbol;
 
-    CreateEnteredGrammarTable(productions, '#grammar');
-    CreateEnteredGrammarTable(terminals, '#terminals');
-    CreateEnteredGrammarTable(noTerminals, '#noTerminals');
-    CreateEnteredGrammarTable(startSymbol, '#startSymbol');
+    CreateEnteredGrammarTable(productions, '#grammar', true);
+    CreateEnteredGrammarTable(terminals, '#terminals', true);
+    CreateEnteredGrammarTable(noTerminals, '#noTerminals', true);
+    CreateEnteredGrammarTable(startSymbol, '#startSymbol', true);
 }
 
 function LeftRecursionDeletion(newGrammar) {
@@ -797,9 +453,9 @@ function ParseProcessTable(processTable) {
     var sequence = processTable.SEQUENCE;
     var transition = processTable.TRANSITION;
 
-    CreateEnteredGrammarTable(state, '#state');
-    CreateEnteredGrammarTable(sequence, '#sequence');
-    CreateEnteredGrammarTable(transition, '#transition');
+    CreateEnteredGrammarTable(state, '#state', true);
+    CreateEnteredGrammarTable(sequence, '#sequence', true);
+    CreateEnteredGrammarTable(transition, '#transition', true);
 }
 
 
@@ -838,78 +494,15 @@ function TableM(table) {
     CreateMTableTable(mTable, '#mTable');
 }
 
-function CreateEnteredGrammarTable(list, id) {
+function CreateEnteredGrammarTable(list, id, needToEscape) {
     var row = '';
     for (var i in list) {
-        row += '<p>' + escapeHtml(list[i]) + '</p>';
-    }
-    $(id).html(row);
-}
-
-
-function CreateStatisticGrammarTable(list, id) {
-    var row = '';
-    for (var i in list) {
-        row += '<p>' + escapeHtml(list[i]) + '</p>';
-    }
-    console.log(id);
-    $("#" + id).html(row);
-}
-
-function CreateAcceptedStatisticTable(items, row, number, idGrammarItem, idSequenceItem) {
-    row = ' <div class="card-container d-flex flex-row mt-3">\n' +
-        '                    <div class="card card-grammar">\n' +
-        '                        <div class="card-header">Grammar</div>\n' +
-            '                        <div class="card-body scrollbar-near-moon" id="' + idGrammarItem + number + '">\n' +
-        '                        </div>\n' +
-        '                    </div>\n' +
-        '                    <div class="card card-sequence">\n' +
-        '                        <div class="card-header">Sequences</div>\n' +
-        '                        <div class="card-body scrollbar-near-moon" id="' + idSequenceItem + number + '">\n' +
-        '                        </div>\n' +
-        '                    </div>\n' +
-        '                </div>\n';
-    return row;
-}
-
-function CreateStatisticSequenceTable(items, id) {
-    var row = '';
-    for (var i in items) {
-        row += '<p>' + escapeHtml(items[i]) + '</p><hr/>';
-    }
-    console.log(row);
-    $("#" + id).html(row);
-}
-
-function CreateNewGrammarTable(productions, first, follow, id) {
-    var row = '';
-    for (var i in productions) {
-        row += '<tr><td>' +
-
-            escapeHtml(productions[i]) + '</td><td>' + escapeHtml(first[i]) + '</td><td>' + escapeHtml(follow[i]) + '</td></tr>';
-    }
-    $(id).html(row);
-}
-
-function CreateMTableTable(mTable, id) {
-    var row = '';
-    for (var i in mTable) {
-        (i == 0) ? row += '<tr class="card-header">' : row += '<tr>';
-        for (var j in mTable[i]) {
-            (j == 0) ? row += '<td class="card-header">' + escapeHtml(mTable[i][j]) + '</td>' : row += '<td>' + escapeHtml(mTable[i][j]) + '</td>';
+        if(needToEscape) {
+            row += '<p>' + escapeHtml(list[i]) + '</p>';
+        } else {
+            row += '<p>' + list[i] + '</p>';
         }
-        row += '</tr>';
     }
-    $(id).html(row);
-}
-
-function ErrorVisualization(jqXHR, textStatus, errorThrown, id) {
-    CreateString(jqXHR.status + ", " + textStatus + ", " + errorThrown + '<br><p>Sorry, please try again</p>', "#errorBody");
-    $(id).modal('show');
-}
-
-function CreateString(list, id) {
-    var row = '<p>' + escapeHtml(list) + '</p>';
     $(id).html(row);
 }
 
@@ -928,4 +521,87 @@ function escapeHtml (string) {
     return String(string).replace(/[&<>"'`=\/]/g, function (s) {
         return entityMap[s];
     });
+}
+
+
+function CreateStatisticGrammarTable(list, id) {
+    var row = '';
+    for (var i in list) {
+        row += '<p>' + list[i] + '</p>';
+    }
+    console.log(id);
+    $("#" + id).html(row);
+}
+
+function CreateAcceptedStatisticTable(items, row, number, idGrammarItem, idSequenceItem) {
+    row = ' <div class="card-container d-flex flex-row mt-3">\n' +
+        '                    <div class="card card-grammar">\n' +
+        '                        <div class="card-header">Grammar</div>\n' +
+        '                        <div class="card-body scrollbar-near-moon" id="' + idGrammarItem + number + '">\n' +
+        '                        </div>\n' +
+        '                    </div>\n' +
+        '                    <div class="card card-sequence">\n' +
+        '                        <div class="card-header">Sequences</div>\n' +
+        '                        <div class="card-body scrollbar-near-moon" id="' + idSequenceItem + number + '">\n' +
+        '                        </div>\n' +
+        '                    </div>\n' +
+        '                </div>\n';
+    return row;
+}
+
+function CreateStatisticSequenceTable(items, id) {
+    var row = '';
+    for (var i in items) {
+        row += '<p>' + items[i] + '</p><hr/>';
+    }
+    console.log(row);
+    $("#" + id).html(row);
+}
+
+function CreateNewGrammarTable(productions, first, follow, id) {
+    var row = '';
+    for (var i in productions) {
+        row += '<tr><td>' +
+
+            productions[i] + '</td><td>' + first[i] + '</td><td>' + follow[i] + '</td></tr>';
+    }
+    $(id).html(row);
+}
+
+function CreateShowProcessTable(states, transitions, curPoses, lastPoses, id) {
+    var row = '';
+    for (var i in states) {
+        var lastPos = (lastPoses[i] != undefined) ? lastPoses[i] : "";
+        row += '<tr><td>' +
+
+            states[i] + '</td><td>' + transitions[i] + '</td><td>' + curPoses[i] + '</td><td>' + lastPos + '</td></tr>';
+    }
+    $(id).html(row);
+}
+
+function CreateMTableTable(mTable, id) {
+    var row = '';
+    for (var i in mTable) {
+        (i == 0) ? row += '<tr class="card-header">' : row += '<tr>';
+        for (var j in mTable[i]) {
+            (j == 0) ? row += '<td class="card-header">' + mTable[i][j] + '</td>' : row += '<td>' + mTable[i][j] + '</td>';
+        }
+        row += '</tr>';
+    }
+    $(id).html(row);
+}
+
+function ErrorVisualization(jqXHR, textStatus, errorThrown, id) {
+    CreateString(jqXHR.status + ", " + textStatus + ", " + errorThrown + '<br><p>Sorry, please try again</p>', "#errorBody");
+    $(id).modal('show');
+}
+
+function CreateString(list, id) {
+    var row = '<p>' + list + '</p>';
+    $(id).html(row);
+}
+
+function toggleText(button_id)  {
+    var text = $(button_id).text();
+    $(button_id).text(text == "Show Process" ? "Hide Process" : "Show Process");
 }
