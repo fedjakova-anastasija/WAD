@@ -1,4 +1,4 @@
-﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
 a.navbar-brand {
@@ -146,13 +146,3 @@ textarea::-webkit-scrollbar-thumb {
     outline: 0;
     box-shadow: 0 0 0 0.2rem rgba(52, 58, 64, 0.5);
     border-color: #ffffff;
-}
-
-.custom-scrollbar {
-    position: relative;
-    height: 200px;
-    overflow: auto;
-}
-.table-wrapper-scroll-y {
-    display: block;
-}

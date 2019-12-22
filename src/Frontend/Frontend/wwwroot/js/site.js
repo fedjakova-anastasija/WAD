@@ -1,4 +1,4 @@
-﻿var ID_BUTTON = "#grammarEnteredButton";
+var ID_BUTTON = "#grammarEnteredButton";
 var ID_BUTTON_SLR = "#grammarEnteredButtonSlr";
 var ID_STATISTIC_BUTTON = "#statisticMenu";
 var ID_SHOW_PROCESS_BUTTON = "#showProcess";
